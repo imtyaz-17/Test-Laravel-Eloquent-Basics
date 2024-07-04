@@ -10,4 +10,5 @@ class Morningnews extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'news_text'];
+    public $timestamps= false;
 }
