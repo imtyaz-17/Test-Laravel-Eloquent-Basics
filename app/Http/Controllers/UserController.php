@@ -37,10 +37,11 @@ class UserController extends Controller
         //   if not found, create a user with $name, $email and random password
         $user = User::where('name', $name)->where('email', $email)->first(); 
         if (!$user) {
+            $password = Str::random(8);
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
-                'password' => bcrypt(str_random(8))
+                'password' => bcrypt($password)
             ]);
         }
         return view('users.show', compact('user'));
@@ -56,10 +57,11 @@ class UserController extends Controller
             $user->save();
         } 
         else {
+            $password = Str::random(8);
             $user = User::create([
                 'name' => $name,
                 'email' => $email,
-                'password' => bcrypt(str_random(8)) 
+                'password' => bcrypt($password) 
             ]);
         }
         return view('users.show', compact('user'));
